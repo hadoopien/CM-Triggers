@@ -1,0 +1,12 @@
+
+YARN 
+
+1. Pending Containers
+
+If Pending Containers number goes beyond 100, CM will mark YARN service as concerning and sends out email. 
+
+Statement : 
+IF (SELECT pending_containers_cumulative WHERE serviceName=$SERVICENAME AND last(pending_containers_cumulative) > 100 AND queueName = "root") DO health:concerning
+
+
+
