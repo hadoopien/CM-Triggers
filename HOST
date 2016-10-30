@@ -1,0 +1,17 @@
+HOST
+
+/ Triggers at Host Level
+
+1. Memory 
+
+If Hosts Memory Utilization crossed 150 GB, CM will marks HOSTS as concerning and sends out email. 
+
+Statement: 
+IF (SELECT mem_rss WHERE hostId=$HOSTID AND min(mem_rss) > 150GB) DO health:concerning
+
+2. CPU 
+
+If Hosts CPU Utilization crossed 90%, CM will marks HOSTS as concerning and sends out email.
+
+Statement:
+IF (SELECT cpu_percent WHERE hostId=$HOSTID AND last(cpu_percent) > 90) DO health:concerning
